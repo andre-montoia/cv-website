@@ -1,0 +1,89 @@
+{
+  "header": {
+    "name": "André Montoia",
+    "title": "Data & AI Project Manager | Agile Delivery Lead",
+    "location": "Lisbon, Portugal",
+    "phone": "+351 910 031 835",
+    "email": "andre.montoia@gmail.com",
+    "linkedin": "linkedin.com/in/andré-montoia-rebêlo",
+    "website": "andre-montoia.github.io/cv-website"
+  },
+  "summary": "Data & AI Project Manager with over 5 years of experience orchestrating enterprise-grade analytics ecosystems and leading agile transformations. Currently driving the strategic roadmap for Data Analytics Front Ends at Siemens, managing the full lifecycle of platforms including Airflow, Qlik Cloud, Anaplan, and SAP Analytics Cloud. Expertise includes leading cross-functional teams (India, Portugal, Germany) to deliver scalable data solutions and integrating Artificial Intelligence and Model Context Protocols (MCP) into core business analytics.",
+  "experience": [
+    {
+      "company": "Siemens AG",
+      "role": "Data & AI Project Lead | Visualizations and UX",
+      "period": "2022 – Present",
+      "location": "Lisbon, Portugal",
+      "details": [
+        "Leading strategic roadmap and agile delivery for enterprise Data & AI platforms (Airflow, Qlik Cloud, Anaplan, SAP Analytics Cloud).",
+        "Spearheading AI & MCP integrations, managing global cross-functional squads, and executing SaaS migrations.",
+        "Owning budget, procurement, and ROI-driven investment decisions for global analytics tools.",
+        "Bridging the gap between technical teams and business leadership, translating complex data requirements into actionable project roadmaps."
+      ]
+    },
+    {
+      "company": "Siemens AG",
+      "role": "Data Solution Expert | AI & Analytics",
+      "period": "2016 – 2022",
+      "location": "Alfragide, Portugal",
+      "details": [
+        "Delivered enterprise BI solutions as technical lead for Qlik-based platforms.",
+        "Engineered performance improvements for on-prem analytics, reducing load times and enhancing user experience.",
+        "Maintained high-availability environments ensuring data integrity and system reliability.",
+        "Collaborated with stakeholders to translate business needs into technical specifications."
+      ]
+    },
+    {
+      "company": "Construção Publica E.P.E",
+      "role": "IT Systems Administrator",
+      "period": "2013 – 2016",
+      "location": "Lisbon, Portugal",
+      "details": [
+        "Maintained IT infrastructure and system security, resolving incidents and performing upgrades."
+      ]
+    },
+    {
+      "company": "EDNI Lda",
+      "role": "IT Helpdesk Technician",
+      "period": "2012 – 2013",
+      "location": "Lisbon, Portugal",
+      "details": [
+        "Delivered first-line support, logging and tracking technical incidents."
+      ]
+    },
+    {
+      "company": "DECSIS",
+      "role": "Hardware Technician",
+      "period": "2011 – 2012",
+      "location": "Alfragide, Portugal",
+      "details": [
+        "Diagnosed and replaced faulty components, ensuring operational efficiency."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "ISEG – Lisbon School of Economics & Management",
+      "degree": "Postgraduate in Digital Technologies for Management",
+      "period": "2022 – 2023",
+      "details": "Specialized in Business Analytics, Cloud Applications, Digital Transformation, Security & AI."
+    }
+  ],
+  "skills": [
+    "Data & AI Platforms (Qlik, SAP, Anaplan, Airflow)",
+    "Agile Methodologies & Scrum (CSM)",
+    "Project Management & Stakeholder Alignment",
+    "SaaS Migration & Cloud Strategy",
+    "AI Integrations (MCP)",
+    "Budgeting & Resource Planning"
+  ],
+  "certifications": [
+    "Certified ScrumMaster® (CSM) - Scrum Alliance (2025)",
+    "Advanced Microsoft Power BI - LinkedIn Learning (2022)"
+  ],
+  "languages": [
+    "English: Fluent",
+    "Portuguese: Native"
+  ]
+}

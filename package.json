@@ -1,0 +1,12 @@
+{
+  "name": "cv-website",
+  "version": "1.0.0",
+  "description": "André Montoia - Data & AI Project Manager Portfolio & CV",
+  "scripts": {
+    "build:cv": "node build-cv.js",
+    "build": "npm run build:cv"
+  },
+  "dependencies": {
+    "pdfkit": "^0.15.0"
+  }
+}
