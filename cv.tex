@@ -5,102 +5,111 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tabularx}
 
-% Page Setup
+% --- Configuration ---
 \geometry{top=0.75in, bottom=0.75in, left=0.75in, right=0.75in}
 \pagestyle{empty}
 
+% Colors
+\definecolor{primary}{RGB}{44, 62, 80}
+\definecolor{accent}{RGB}{52, 152, 219}
+\definecolor{textgray}{RGB}{80, 80, 80}
+
 % Formatting
-\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titleformat{\section}{\large\bfseries\color{primary}\uppercase}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{12pt}{8pt}
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*}
+\setlength{\parindent}{0pt}
 
 % Hyperlink Setup
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    filecolor=magenta,      
-    urlcolor=black,
+    linkcolor=primary,
+    urlcolor=accent,
 }
 
 \begin{document}
 
-% Header
+% --- Header ---
 \begin{center}
-    {\Huge \textbf{André Montoia}} \\ \vspace{4pt}
-    {\large \textbf{Data \& AI Project Manager | Agile Delivery Lead}} \\ \vspace{6pt}
-    Lisbon, Portugal | +351 910 031 835 | \href{mailto:andre.montoia@gmail.com}{andre.montoia@gmail.com} | \href{https://linkedin.com/in/andré-montoia-rebêlo}{linkedin.com/in/andré-montoia-rebêlo}
+    {\Huge \textbf{\textcolor{primary}{André Montoia}}} \\ \vspace{4pt}
+    {\large \textcolor{accent}{\textbf{Data \& AI Project Manager | Agile Delivery Lead}}} \\ \vspace{6pt}
+    \small Lisbon, Portugal | +351 910 031 835 | \href{mailto:andre.montoia@gmail.com}{andre.montoia@gmail.com} | \href{https://linkedin.com/in/andré-montoia-rebêlo}{linkedin.com/in/andré-montoia-rebêlo}
 \end{center}
 
-% About
-\section{About Me}
-Data \& AI Project Manager with over 5 years of experience orchestrating enterprise-grade analytics ecosystems and leading agile transformations. Currently driving the strategic roadmap for Data Analytics Front Ends at Siemens, managing the full lifecycle of platforms including \textbf{Airflow, Qlik Cloud, Anaplan, and SAP Analytics Cloud}. Expertise includes leading cross-functional teams (India, Portugal, Germany) to deliver scalable data solutions and integrating \textbf{Artificial Intelligence and Model Context Protocols (MCP)} into core business analytics. Proven track record in SaaS migrations, ROI-driven investment decisions, and stakeholder alignment.
+% --- Profile ---
+\section{Profile}
+Data \& AI Project Manager with over 5 years of experience orchestrating enterprise-grade analytics ecosystems and leading agile transformations. Currently driving the strategic roadmap for Data Analytics Front Ends at Siemens, managing the full lifecycle of platforms including \textbf{Airflow, Qlik Cloud, Anaplan, and SAP Analytics Cloud}. Expertise includes leading cross-functional teams (India, Portugal, Germany) to deliver scalable data solutions and integrating \textbf{Artificial Intelligence and Model Context Protocols (MCP)} into core business analytics.
 
-% Experience
+% --- Skills ---
+\section{Core Skills}
+\begin{itemize}
+    \item \textbf{Data \& AI Platforms:} Qlik Cloud, SAP Analytics Cloud, Anaplan, Airflow, Microsoft Fabric, AI Integrations (MCP)
+    \item \textbf{Management:} Agile Methodologies (Scrum Master Certified), Project Management, Stakeholder Alignment, Budgeting
+    \item \textbf{Core:} Analytical Thinking, SaaS Migration, Cross-cultural Leadership, Data-Driven Decision Making
+\end{itemize}
+
+% --- Experience ---
 \section{Professional Experience}
 
-\textbf{Siemens AG} \hfill \textit{2022 -- Present} \\
-\textit{Data \& AI Project Lead | Visualizations and UX} \hfill Lisbon, Portugal
+\textbf{Data \& AI Project Lead | Visualizations and UX} \hfill \textit{2022 -- Present} \\
+\textit{Siemens AG} \hfill \textcolor{accent}{Lisbon, Portugal}
 \begin{itemize}
     \item Leading strategic roadmap and agile delivery for enterprise Data \& AI platforms (Airflow, Qlik Cloud, Anaplan, SAP Analytics Cloud).
     \item Spearheading \textbf{AI \& MCP integrations}, managing global cross-functional squads, and executing SaaS migrations.
     \item Owning budget, procurement, and ROI-driven investment decisions for global analytics tools.
     \item Bridging the gap between technical teams and business leadership, translating complex data requirements into actionable project roadmaps.
 \end{itemize}
+\vspace{2mm}
 
-\textbf{Siemens AG} \hfill \textit{2016 -- 2022} \\
-\textit{Data Solution Expert | AI \& Analytics} \hfill Alfragide, Portugal
+\textbf{Data Solution Expert | AI \& Analytics} \hfill \textit{2016 -- 2022} \\
+\textit{Siemens AG} \hfill \textcolor{accent}{Alfragide, Portugal}
 \begin{itemize}
     \item Delivered enterprise BI solutions as technical lead for Qlik-based platforms.
     \item Engineered performance improvements for on-prem analytics, reducing load times and enhancing user experience.
     \item Maintained high-availability environments ensuring data integrity and system reliability.
     \item Collaborated with stakeholders to translate business needs into technical specifications.
 \end{itemize}
+\vspace{2mm}
 
-\textbf{Construção Publica E.P.E} \hfill \textit{2013 -- 2016} \\
-\textit{IT Systems Administrator} \hfill Lisbon, Portugal
+\textbf{IT Systems Administrator} \hfill \textit{2013 -- 2016} \\
+\textit{Construção Publica E.P.E} \hfill \textcolor{accent}{Lisbon, Portugal}
 \begin{itemize}
     \item Maintained IT infrastructure and system security, resolving incidents and performing upgrades.
 \end{itemize}
+\vspace{2mm}
 
-\textbf{EDNI Lda} \hfill \textit{2012 -- 2013} \\
-\textit{IT Helpdesk Technician}
+\textbf{IT Helpdesk Technician} \hfill \textit{2012 -- 2013} \\
+\textit{EDNI Lda} \hfill \textcolor{accent}{Lisbon, Portugal}
 \begin{itemize}
     \item Delivered first-line support, logging and tracking technical incidents.
 \end{itemize}
+\vspace{2mm}
 
-\textbf{DECSIS} \hfill \textit{2011 -- 2012} \\
-\textit{Hardware Technician}
+\textbf{Hardware Technician} \hfill \textit{2011 -- 2012} \\
+\textit{DECSIS} \hfill \textcolor{accent}{Alfragide, Portugal}
 \begin{itemize}
     \item Diagnosed and replaced faulty components, ensuring operational efficiency.
 \end{itemize}
 
-% Education
+% --- Education ---
 \section{Education}
-
 \textbf{Postgraduate in Digital Technologies for Management} \hfill \textit{2022 -- 2023} \\
-ISEG – Lisbon School of Economics \& Management
+\textit{ISEG – Lisbon School of Economics \& Management}
 \begin{itemize}
     \item Specialized in Business Analytics, Cloud Applications, Digital Transformation, Security \& AI.
 \end{itemize}
 
-% Skills
-\section{Skills \& Expertise}
-\begin{itemize}
-    \item \textbf{Data \& AI Platforms:} Qlik Cloud, SAP Analytics Cloud, Anaplan, Airflow, Microsoft Fabric, AI Integrations (MCP).
-    \item \textbf{Management:} Agile Methodologies (Scrum Master Certified), Project Management, Stakeholder Alignment, Budgeting.
-    \item \textbf{Core:} Analytical Thinking, SaaS Migration, Cross-cultural Leadership, Data-Driven Decision Making.
-\end{itemize}
-
-% Certifications
+% --- Certifications ---
 \section{Certifications}
 \begin{itemize}
     \item \textbf{Certified ScrumMaster® (CSM)} -- Scrum Alliance (2025)
     \item \textbf{Advanced Microsoft Power BI} -- LinkedIn Learning (2022)
 \end{itemize}
 
-% Languages
+% --- Languages ---
 \section{Languages}
 \begin{itemize}
     \item \textbf{English:} Fluent (Professional Proficiency)
