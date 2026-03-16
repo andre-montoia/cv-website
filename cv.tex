@@ -1,7 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.4in]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{hyperref}
@@ -23,58 +23,67 @@
 % Hyperlink Setup
 \hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
 
-% Commands
-% Simplified macros to avoid syntax errors
-\def\sideheading#1{\par\vspace{8pt}\noindent{\bfseries\color{accent}\small #1}\par}
-\def\sideitem#1{\par{\color{sidebartext}\footnotesize #1}}
-
 \begin{document}
 \noindent
-\begin{minipage}[t][\dimexpr\paperheight-0.8in]{0.35\textwidth}
+% --- LEFT COLUMN ---
+\begin{minipage}[t]{0.35\textwidth}
     \vspace{0pt}
+    % Background
+    \colorbox{sidebarbg}{%
+    \begin{minipage}[t]{\linewidth}
     \centering
     \vspace{20pt}
-        % Photo
-        \begin{tikzpicture}
-            \clip (0,0) circle (50pt);
-            \node[inner sep=0pt] at (0,0) {\includegraphics[width=100pt, height=100pt, keepaspectratio]{image.png}};
-        \end{tikzpicture}
-        \vspace{15pt}
-        
-        \sideheading{Contact}
-        \sideitem{+351 910 031 835}
-        \sideitem{andre.montoia@gmail.com}
-        \sideitem{Lisbon, Portugal}
-        \sideitem{linkedin.com/in/andré-montoia-rebêlo}
-        \vspace{10pt}
+    
+    % Photo
+    \begin{tikzpicture}
+        \clip (0,0) circle (45pt);
+        \node[inner sep=0pt] at (0,0) {\includegraphics[width=90pt, height=90pt, keepaspectratio]{image.png}};
+    \end{tikzpicture}
+    \vspace{15pt}
 
-        \sideheading{Core Skills}
-        \sideitem{Data \& AI: Qlik, SAP, Anaplan, Airflow}
-        \sideitem{Agile \& Scrum (CSM)}
-        \sideitem{Project Management}
-        \sideitem{SaaS Migration \& Cloud}
-        \sideitem{Budgeting \& Resource Planning}
-        \vspace{10pt}
+    % Contact
+    {\color{accent}\bfseries\small CONTACT}\par\vspace{4pt}
+    {\color{sidebartext}\footnotesize +351 910 031 835}\par
+    {\color{sidebartext}\footnotesize andre.montoia@gmail.com}\par
+    {\color{sidebartext}\footnotesize Lisbon, Portugal}\par
+    {\color{sidebartext}\footnotesize linkedin.com/in/andré-montoia-rebêlo}\par
+    \vspace{10pt}
 
-        \sideheading{Education}
-        \sideitem{\textbf{Postgrad. Digital Tech.}}
-        \sideitem{ISEG – Lisbon School}
-        \sideitem{\color{accent}2022 -- 2023}
-        \vspace{10pt}
+    % Skills
+    {\color{accent}\bfseries\small CORE SKILLS}\par\vspace{4pt}
+    {\color{sidebartext}\footnotesize Data \& AI: Qlik, SAP, Anaplan, Airflow}\par
+    {\color{sidebartext}\footnotesize Agile \& Scrum (CSM)}\par
+    {\color{sidebartext}\footnotesize Project Management}\par
+    {\color{sidebartext}\footnotesize SaaS Migration \& Cloud}\par
+    {\color{sidebartext}\footnotesize Budgeting \& Resource Planning}\par
+    \vspace{10pt}
 
-        \sideheading{Certifications}
-        \sideitem{Certified ScrumMaster® (2025)}
-        \sideitem{Adv. Microsoft Power BI (2022)}
-        \vspace{10pt}
+    % Education
+    {\color{accent}\bfseries\small EDUCATION}\par\vspace{4pt}
+    {\color{sidebartext}\footnotesize \textbf{Postgrad. Digital Tech.}}\par
+    {\color{sidebartext}\footnotesize ISEG – Lisbon School}\par
+    {\color{accent}\footnotesize 2022 -- 2023}\par
+    \vspace{10pt}
 
-        \sideheading{Languages}
-        \sideitem{English: Fluent}
-        \sideitem{Portuguese: Native}
-        \vspace{20pt}
+    % Certifications
+    {\color{accent}\bfseries\small CERTIFICATIONS}\par\vspace{4pt}
+    {\color{sidebartext}\footnotesize Certified ScrumMaster® (2025)}\par
+    {\color{sidebartext}\footnotesize Adv. Microsoft Power BI (2022)}\par
+    \vspace{10pt}
+
+    % Languages
+    {\color{accent}\bfseries\small LANGUAGES}\par\vspace{4pt}
+    {\color{sidebartext}\footnotesize English: Fluent}\par
+    {\color{sidebartext}\footnotesize Portuguese: Native}\par
+    \vspace{30pt}
+    \end{minipage}%
+    }
 \end{minipage}%
+%
 \hfill
-\begin{minipage}[t][\dimexpr\paperheight-0.8in]{0.62\textwidth}
-    \vspace{0pt}
+%
+% --- RIGHT COLUMN ---
+\begin{minipage}[t]{0.62\textwidth}
     \vspace{10pt}
     % Header
     {\Huge \bfseries\color{maindark} ANDRÉ MONTOIA}\par
@@ -90,13 +99,14 @@
 
     % Experience
     {\bfseries\color{maindark} PROFESSIONAL EXPERIENCE}\par
-    
+
     \textbf{Data \& AI Project Lead} \hfill \color{accent}2022--Present\par
     \textit{\color{accent}Siemens AG}, Lisbon\par
     \begin{itemize}[leftmargin=*, label=\color{accent}•, itemsep=2pt, topsep=4pt]
         \item \small\color{mainlight}Leading roadmap for Data \& AI platforms (Airflow, Qlik, SAP, Anaplan).
         \item \small\color{mainlight}Spearheading AI \& MCP integrations and SaaS migrations.
         \item \small\color{mainlight}Owning budget, procurement, and ROI decisions.
+        \item \small\color{mainlight}Bridging gap between technical teams and business leadership.
     \end{itemize}
     \vspace{6pt}
 
@@ -105,6 +115,7 @@
     \begin{itemize}[leftmargin=*, label=\color{accent}•, itemsep=2pt, topsep=4pt]
         \item \small\color{mainlight}Technical lead for Qlik-based BI solutions.
         \item \small\color{mainlight}Optimized on-prem analytics performance.
+        \item \small\color{mainlight}Maintained high-availability environments.
     \end{itemize}
     \vspace{6pt}
 
