@@ -4,117 +4,187 @@ const PDFDocument = require('pdfkit');
 
 // Load Data
 const data = require('./cv-data.json');
-const doc = new PDFDocument({ margin: 50, size: 'A4' });
+const doc = new PDFDocument({ margin: 0, size: 'A4' }); // Zero margin for full control
 const stream = fs.createWriteStream(path.join(__dirname, 'CV.pdf'));
 
 doc.pipe(stream);
 
 // --- Configuration ---
 const colors = {
-  primary: '#2c3e50',    // Dark Slate
-  accent: '#2980b9',     // Strong Blue
-  text: '#333333',       // Soft Black
-  lightText: '#555555'   // Grey
+  sidebarBg: '#2c3e50',    // Dark Blue-Grey
+  sidebarText: '#ecf0f1',  // Light Grey/White
+  accent: '#3498db',       // Bright Blue
+  mainText: '#333333',     // Dark Grey
+  lightText: '#7f8c8d',    // Light Grey
+  white: '#ffffff'
 };
 
-// --- Helpers ---
-function drawHeader() {
-  // Name
-  doc.font('Helvetica-Bold', 24).fillColor(colors.primary).text(data.header.name.toUpperCase(), { align: 'center' });
-  
-  // Title
-  doc.moveDown(0.3);
-  doc.font('Helvetica', 14).fillColor(colors.accent).text(data.header.title, { align: 'center' });
-  
-  // Contact Row
-  doc.moveDown(0.5);
-  doc.font('Helvetica', 10).fillColor(colors.text);
-  const contactText = `${data.header.location}  |  ${data.header.phone}  |  ${data.header.email}  |  ${data.header.linkedin}`;
-  doc.text(contactText, { align: 'center' });
-  
-  doc.moveDown(0.8);
-  
-  // Separator
-  doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke(colors.accent);
-  doc.moveDown(0.5);
-}
+const layout = {
+  sidebarWidth: 230,
+  padding: 40,
+  mainLeft: 270
+};
 
-function drawSectionTitle(title) {
-  doc.font('Helvetica-Bold', 12).fillColor(colors.primary).text(title, { characterSpacing: 1 });
-  doc.moveDown(0.2);
-  // Small underline
-  const width = doc.widthOfString(title);
-  const x = doc.x - width; // Approximate, works for left align
-  // Actually, let's just do a full width line for cleaner look
-  doc.moveTo(50, doc.y - 5).lineTo(550, doc.y - 5).stroke(colors.lightText, { width: 0.5 });
-  doc.moveDown(0.3);
-}
+// --- Helper Functions ---
 
-function drawList(items, isBullet = true) {
-  items.forEach(item => {
-    const prefix = isBullet ? '• ' : '';
-    doc.font('Helvetica', 10).fillColor(colors.text).text(prefix + item, { lineHeight: 1.4 });
-  });
-  doc.moveDown(0.2);
-}
+// Draw Sidebar Background & Content
+function drawSidebar() {
+  // 1. Background Rectangle
+  doc.fillColor(colors.sidebarBg).rect(0, 0, layout.sidebarWidth, doc.page.height);
 
-// --- Build ---
+  let y = layout.padding;
+  const leftMargin = 30; // Inside sidebar
+  const contentWidth = layout.sidebarWidth - leftMargin - 10;
 
-// 1. Header
-drawHeader();
-
-// 2. Profile
-drawSectionTitle('PROFILE');
-doc.font('Helvetica', 10).fillColor(colors.text).text(data.summary, { lineHeight: 1.4 });
-doc.moveDown(0.5);
-
-// 3. Skills
-drawSectionTitle('SKILLS');
-drawList(data.skills);
-doc.moveDown(0.3);
-
-// 4. Experience
-drawSectionTitle('EXPERIENCE');
-data.experience.forEach(job => {
-  // Role
-  doc.font('Helvetica-Bold', 11).fillColor(colors.primary).text(job.role);
-  
-  // Company | Period
-  doc.font('Helvetica-Bold', 10).fillColor(colors.accent).text(`${job.company}  |  ${job.period}  |  ${job.location}`, { lineHeight: 1.2 });
-  
-  // Details
-  doc.moveDown(0.1);
-  job.details.forEach(detail => {
-    doc.font('Helvetica', 10).fillColor(colors.text).text('• ' + detail, { lineHeight: 1.4, indent: 10 });
-  });
-  
-  doc.moveDown(0.4);
-});
-
-// 5. Education
-drawSectionTitle('EDUCATION');
-data.education.forEach(edu => {
-  doc.font('Helvetica-Bold', 11).fillColor(colors.primary).text(edu.degree);
-  doc.font('Helvetica', 10).fillColor(colors.accent).text(`${edu.institution}  |  ${edu.period}`);
-  if (edu.details) {
-    doc.moveDown(0.1);
-    doc.font('Helvetica', 10).fillColor(colors.text).text(edu.details);
+  // 2. Profile Picture (Optional)
+  const imagePath = path.join(__dirname, 'image.png');
+  if (fs.existsSync(imagePath)) {
+    try {
+      // Draw circular mask effect is hard in pure pdfkit, so we draw a square with rounded corners or just square
+      // Center it in the sidebar
+      const imgSize = 100;
+      const imgX = (layout.sidebarWidth - imgSize) / 2;
+      doc.image(imagePath, imgX, y, { width: imgSize, height: imgSize });
+      y += imgSize + 25;
+    } catch (e) {
+      console.log('⚠️ Image not found or invalid, skipping...');
+      y += 20;
+    }
+  } else {
+    y += 20;
   }
-  doc.moveDown(0.3);
-});
 
-// 6. Certifications
-drawSectionTitle('CERTIFICATIONS');
-drawList(data.certifications);
-doc.moveDown(0.3);
+  // Helper for Sidebar Sections
+  const drawSection = (title, contentFn) => {
+    doc.font('Helvetica-Bold', 12).fillColor(colors.accent).text(title.toUpperCase(), leftMargin, y, { tracking: 1 });
+    y += 20;
+    contentFn();
+    y += 15; // Spacing after section
+  };
 
-// 7. Languages
-drawSectionTitle('LANGUAGES');
-drawList(data.languages);
+  // 3. Contact Info
+  drawSection('Contact', () => {
+    doc.font('Helvetica', 9).fillColor(colors.sidebarText);
+    const contacts = [
+      `📞 ${data.header.phone}`,
+      `✉️ ${data.header.email}`,
+      `📍 ${data.header.location}`,
+      `🔗 ${data.header.linkedin}`
+    ];
+    contacts.forEach(line => {
+      doc.text(line, leftMargin, y, { width: contentWidth, align: 'left' });
+      y += 16;
+    });
+    y -= 16; // Adjust back
+  });
 
-// Finalize
+  y += 15;
+
+  // 4. Skills
+  drawSection('Skills', () => {
+    doc.font('Helvetica', 9).fillColor(colors.sidebarText);
+    data.skills.forEach(skill => {
+      doc.text(`• ${skill}`, leftMargin, y, { width: contentWidth, align: 'left' });
+      y += 16;
+    });
+    y -= 16;
+  });
+
+  y += 15;
+
+  // 5. Education
+  drawSection('Education', () => {
+    data.education.forEach(edu => {
+      doc.font('Helvetica-Bold', 10).fillColor(colors.white).text(edu.institution, leftMargin, y, { width: contentWidth });
+      y += 14;
+      doc.font('Helvetica', 9).fillColor(colors.sidebarText).text(edu.degree, leftMargin, y, { width: contentWidth });
+      y += 14;
+      doc.font('Helvetica-Oblique', 8).fillColor(colors.accent).text(edu.period, leftMargin, y, { width: contentWidth });
+      y += 10;
+    });
+    y -= 10;
+  });
+
+  y += 15;
+
+  // 6. Certifications
+  drawSection('Certifications', () => {
+    doc.font('Helvetica', 9).fillColor(colors.sidebarText);
+    data.certifications.forEach(cert => {
+      doc.text(`• ${cert}`, leftMargin, y, { width: contentWidth, align: 'left' });
+      y += 16;
+    });
+    y -= 16;
+  });
+
+  y += 15;
+
+  // 7. Languages
+  drawSection('Languages', () => {
+    doc.font('Helvetica', 9).fillColor(colors.sidebarText);
+    data.languages.forEach(lang => {
+      doc.text(`• ${lang}`, leftMargin, y, { width: contentWidth, align: 'left' });
+      y += 16;
+    });
+    y -= 16;
+  });
+}
+
+// Draw Main Content (Right Side)
+function drawMainContent() {
+  let y = layout.padding;
+  const mainLeft = layout.mainLeft;
+  const mainWidth = doc.page.width - mainLeft - layout.padding;
+
+  // 1. Header (Name & Title)
+  doc.font('Helvetica-Bold', 26).fillColor(colors.sidebarBg).text(data.header.name.toUpperCase(), mainLeft, y, { width: mainWidth });
+  y += 35;
+  doc.font('Helvetica', 14).fillColor(colors.accent).text(data.header.title, mainLeft, y, { width: mainWidth });
+  y += 45;
+
+  // 2. Profile
+  doc.font('Helvetica-Bold', 12).fillColor(colors.sidebarBg).text('PROFILE');
+  y = doc.y + 10;
+  doc.font('Helvetica', 10).fillColor(colors.mainText).text(data.summary, mainLeft, y, { width: mainWidth, lineHeight: 1.5 });
+  y = doc.y + 25;
+
+  // 3. Experience
+  doc.font('Helvetica-Bold', 12).fillColor(colors.sidebarBg).text('EXPERIENCE');
+  y = doc.y + 10;
+  
+  data.experience.forEach((job, index) => {
+    // Role
+    doc.font('Helvetica-Bold', 11).fillColor(colors.mainText).text(job.role, mainLeft, y, { width: mainWidth });
+    y += 18;
+    
+    // Company | Date
+    doc.font('Helvetica-Bold', 10).fillColor(colors.accent).text(`${job.company}  |  ${job.period}`, mainLeft, y, { width: mainWidth });
+    y += 15;
+
+    // Details
+    job.details.forEach(detail => {
+      doc.font('Helvetica', 10).fillColor(colors.lightText).text(`• ${detail}`, mainLeft, y, { width: mainWidth, lineHeight: 1.4 });
+      y += 16;
+    });
+
+    y += 10;
+    // Separator Line
+    if (index < data.experience.length - 1) {
+      doc.moveTo(mainLeft, y).lineTo(mainLeft + mainWidth, y).stroke(colors.lightText, { width: 0.5, opacity: 0.3 });
+      y += 15;
+    }
+  });
+}
+
+// --- Execution ---
+// 1. Draw Sidebar First (Background)
+drawSidebar();
+
+// 2. Draw Main Content (Foreground)
+drawMainContent();
+
 doc.end();
 
 stream.on('finish', () => {
-  console.log('✅ CV.pdf generated successfully with clean layout.');
+  console.log('✅ Modern CV with Sidebar generated successfully.');
 });
