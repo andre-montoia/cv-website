@@ -2,118 +2,170 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{geometry}
-\usepackage{titlesec}
+\usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage{xcolor}
+\usepackage{titlesec}
 \usepackage{tabularx}
+\usepackage{helvet} % Use Helvetica font
 
 % --- Configuration ---
-\geometry{top=0.75in, bottom=0.75in, left=0.75in, right=0.75in}
+\renewcommand{\familydefault}{\sfdefault} % Set default font to sans-serif (Helvetica)
+\geometry{top=0.5in, bottom=0.5in, left=0.5in, right=0.5in}
 \pagestyle{empty}
 
 % Colors
-\definecolor{primary}{RGB}{44, 62, 80}
-\definecolor{accent}{RGB}{52, 152, 219}
-\definecolor{textgray}{RGB}{80, 80, 80}
-
-% Formatting
-\titleformat{\section}{\large\bfseries\color{primary}\uppercase}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{12pt}{8pt}
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*}
-\setlength{\parindent}{0pt}
+\definecolor{sidebarbg}{RGB}{44, 62, 80}    % Dark Navy
+\definecolor{accent}{RGB}{52, 152, 219}     % Bright Blue
+\definecolor{textdark}{RGB}{50, 50, 50}     % Dark Grey
+\definecolor{textlight}{RGB}{100, 100, 100} % Light Grey
 
 % Hyperlink Setup
 \hypersetup{
     colorlinks=true,
-    linkcolor=primary,
+    linkcolor=accent,
     urlcolor=accent,
+}
+
+% Custom Commands
+\newcommand{\sidebarsection}[1]{
+    \vspace{5pt}
+    \textbf{\textcolor{white}{\uppercase{#1}}}
+    \vspace{3pt}
+}
+
+\newcommand{\mainsection}[1]{
+    \section*{\textcolor{sidebarbg}{\uppercase{#1}}}
+    \vspace{-8pt}
 }
 
 \begin{document}
 
-% --- Header ---
-\begin{center}
-    {\Huge \textbf{\textcolor{primary}{André Montoia}}} \\ \vspace{4pt}
-    {\large \textcolor{accent}{\textbf{Data \& AI Project Manager | Agile Delivery Lead}}} \\ \vspace{6pt}
-    \small Lisbon, Portugal | +351 910 031 835 | \href{mailto:andre.montoia@gmail.com}{andre.montoia@gmail.com} | \href{https://linkedin.com/in/andré-montoia-rebêlo}{linkedin.com/in/andré-montoia-rebêlo}
-\end{center}
+% --- Layout Strategy: Minipages ---
+% Left Sidebar (30%)
+\begin{minipage}[t]{0.32\textwidth}
+    \vspace{0pt}
+    
+    % Background color for sidebar (simulated via colorbox or just text color for now)
+    % Since we can't easily do full page background in standard article without complex setup,
+    % we will style the text heavily and use a clean white layout with strong sidebar headers.
+    % Actually, let's use a simple colored box for the header and clean lines.
+    
+    % --- Profile Image (Optional) ---
+    % If image.png exists, include it.
+    % \begin{center}
+    % \includegraphics[width=0.8\textwidth]{image.png}
+    % \end{center}
+    % \vspace{10pt}
+    
+    % --- Contact ---
+    \sidebarsection{Contact}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt]
+        \item \textcolor{textlight}{\small +351 910 031 835}
+        \item \textcolor{textlight}{\small andre.montoia@gmail.com}
+        \item \textcolor{textlight}{\small Lisbon, Portugal}
+        \item \textcolor{textlight}{\small linkedin.com/in/andré-montoia-rebêlo}
+    \end{itemize}
 
-% --- Profile ---
-\section{Profile}
-Data \& AI Project Manager with over 5 years of experience orchestrating enterprise-grade analytics ecosystems and leading agile transformations. Currently driving the strategic roadmap for Data Analytics Front Ends at Siemens, managing the full lifecycle of platforms including \textbf{Airflow, Qlik Cloud, Anaplan, and SAP Analytics Cloud}. Expertise includes leading cross-functional teams (India, Portugal, Germany) to deliver scalable data solutions and integrating \textbf{Artificial Intelligence and Model Context Protocols (MCP)} into core business analytics.
+    % --- Skills ---
+    \sidebarsection{Core Skills}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt]
+        \item \textcolor{textdark}{\small Data \& AI Platforms (Qlik, SAP, Anaplan, Airflow)}
+        \item \textcolor{textdark}{\small Agile Methodologies \& Scrum (CSM)}
+        \item \textcolor{textdark}{\small Project Management \& Stakeholder Alignment}
+        \item \textcolor{textdark}{\small SaaS Migration \& Cloud Strategy}
+        \item \textcolor{textdark}{\small AI Integrations (MCP)}
+        \item \textcolor{textdark}{\small Budgeting \& Resource Planning}
+    \end{itemize}
 
-% --- Skills ---
-\section{Core Skills}
-\begin{itemize}
-    \item \textbf{Data \& AI Platforms:} Qlik Cloud, SAP Analytics Cloud, Anaplan, Airflow, Microsoft Fabric, AI Integrations (MCP)
-    \item \textbf{Management:} Agile Methodologies (Scrum Master Certified), Project Management, Stakeholder Alignment, Budgeting
-    \item \textbf{Core:} Analytical Thinking, SaaS Migration, Cross-cultural Leadership, Data-Driven Decision Making
-\end{itemize}
+    % --- Education ---
+    \sidebarsection{Education}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt]
+        \item \textcolor{textdark}{\small \textbf{Postgraduate in Digital Technologies for Management}} \\
+        \textcolor{accent}{\small ISEG – Lisbon School of Economics \& Management} \\
+        \textcolor{textlight}{\small 2022 -- 2023}
+    \end{itemize}
 
-% --- Experience ---
-\section{Professional Experience}
+    % --- Certifications ---
+    \sidebarsection{Certifications}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt]
+        \item \textcolor{textdark}{\small Certified ScrumMaster® (CSM) - Scrum Alliance (2025)}
+        \item \textcolor{textdark}{\small Advanced Microsoft Power BI - LinkedIn Learning (2022)}
+    \end{itemize}
 
-\textbf{Data \& AI Project Lead | Visualizations and UX} \hfill \textit{2022 -- Present} \\
-\textit{Siemens AG} \hfill \textcolor{accent}{Lisbon, Portugal}
-\begin{itemize}
-    \item Leading strategic roadmap and agile delivery for enterprise Data \& AI platforms (Airflow, Qlik Cloud, Anaplan, SAP Analytics Cloud).
-    \item Spearheading \textbf{AI \& MCP integrations}, managing global cross-functional squads, and executing SaaS migrations.
-    \item Owning budget, procurement, and ROI-driven investment decisions for global analytics tools.
-    \item Bridging the gap between technical teams and business leadership, translating complex data requirements into actionable project roadmaps.
-\end{itemize}
-\vspace{2mm}
+    % --- Languages ---
+    \sidebarsection{Languages}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt]
+        \item \textcolor{textdark}{\small English: Fluent}
+        \item \textcolor{textdark}{\small Portuguese: Native}
+    \end{itemize}
 
-\textbf{Data Solution Expert | AI \& Analytics} \hfill \textit{2016 -- 2022} \\
-\textit{Siemens AG} \hfill \textcolor{accent}{Alfragide, Portugal}
-\begin{itemize}
-    \item Delivered enterprise BI solutions as technical lead for Qlik-based platforms.
-    \item Engineered performance improvements for on-prem analytics, reducing load times and enhancing user experience.
-    \item Maintained high-availability environments ensuring data integrity and system reliability.
-    \item Collaborated with stakeholders to translate business needs into technical specifications.
-\end{itemize}
-\vspace{2mm}
+\end{minipage}%
+%
+\hfill
+%
+% Right Main Content (65%)
+\begin{minipage}[t]{0.65\textwidth}
+    \vspace{0pt}
+    
+    % --- Header ---
+    {\Huge \textbf{\textcolor{sidebarbg}{André Montoia}}} \\
+    {\large \textbf{\textcolor{accent}{Data \& AI Project Manager | Agile Delivery Lead}}}
+    \vspace{10pt}
+    
+    % --- Profile ---
+    \mainsection{Profile}
+    \textcolor{textdark}{Data \& AI Project Manager with over 5 years of experience orchestrating enterprise-grade analytics ecosystems and leading agile transformations. Currently driving the strategic roadmap for Data Analytics Front Ends at Siemens, managing the full lifecycle of platforms including \textbf{Airflow, Qlik Cloud, Anaplan, and SAP Analytics Cloud}. Expertise includes leading cross-functional teams (India, Portugal, Germany) to deliver scalable data solutions and integrating \textbf{Artificial Intelligence and Model Context Protocols (MCP)} into core business analytics.}
+    \vspace{10pt}
 
-\textbf{IT Systems Administrator} \hfill \textit{2013 -- 2016} \\
-\textit{Construção Publica E.P.E} \hfill \textcolor{accent}{Lisbon, Portugal}
-\begin{itemize}
-    \item Maintained IT infrastructure and system security, resolving incidents and performing upgrades.
-\end{itemize}
-\vspace{2mm}
+    % --- Experience ---
+    \mainsection{Professional Experience}
+    
+    % Job 1
+    \textbf{\textcolor{textdark}{Data \& AI Project Lead | Visualizations and UX}} \hfill \textcolor{accent}{2022 -- Present} \\
+    \textit{\textcolor{accent}{Siemens AG}} \hfill \textcolor{textlight}{Lisbon, Portugal}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt, topsep=4pt]
+        \item \textcolor{textdark}{\small Leading strategic roadmap and agile delivery for enterprise Data \& AI platforms (Airflow, Qlik Cloud, Anaplan, SAP Analytics Cloud).}
+        \item \textcolor{textdark}{\small Spearheading \textbf{AI \& MCP integrations}, managing global cross-functional squads, and executing SaaS migrations.}
+        \item \textcolor{textdark}{\small Owning budget, procurement, and ROI-driven investment decisions for global analytics tools.}
+        \item \textcolor{textdark}{\small Bridging the gap between technical teams and business leadership, translating complex data requirements into actionable project roadmaps.}
+    \end{itemize}
+    \vspace{6pt}
 
-\textbf{IT Helpdesk Technician} \hfill \textit{2012 -- 2013} \\
-\textit{EDNI Lda} \hfill \textcolor{accent}{Lisbon, Portugal}
-\begin{itemize}
-    \item Delivered first-line support, logging and tracking technical incidents.
-\end{itemize}
-\vspace{2mm}
+    % Job 2
+    \textbf{\textcolor{textdark}{Data Solution Expert | AI \& Analytics}} \hfill \textcolor{accent}{2016 -- 2022} \\
+    \textit{\textcolor{accent}{Siemens AG}} \hfill \textcolor{textlight}{Alfragide, Portugal}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt, topsep=4pt]
+        \item \textcolor{textdark}{\small Delivered enterprise BI solutions as technical lead for Qlik-based platforms.}
+        \item \textcolor{textdark}{\small Engineered performance improvements for on-prem analytics, reducing load times and enhancing user experience.}
+        \item \textcolor{textdark}{\small Maintained high-availability environments ensuring data integrity and system reliability.}
+        \item \textcolor{textdark}{\small Collaborated with stakeholders to translate business needs into technical specifications.}
+    \end{itemize}
+    \vspace{6pt}
 
-\textbf{Hardware Technician} \hfill \textit{2011 -- 2012} \\
-\textit{DECSIS} \hfill \textcolor{accent}{Alfragide, Portugal}
-\begin{itemize}
-    \item Diagnosed and replaced faulty components, ensuring operational efficiency.
-\end{itemize}
+    % Job 3
+    \textbf{\textcolor{textdark}{IT Systems Administrator}} \hfill \textcolor{accent}{2013 -- 2016} \\
+    \textit{\textcolor{accent}{Construção Publica E.P.E}} \hfill \textcolor{textlight}{Lisbon, Portugal}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt, topsep=4pt]
+        \item \textcolor{textdark}{\small Maintained IT infrastructure and system security, resolving incidents and performing upgrades.}
+    \end{itemize}
+    \vspace{6pt}
 
-% --- Education ---
-\section{Education}
-\textbf{Postgraduate in Digital Technologies for Management} \hfill \textit{2022 -- 2023} \\
-\textit{ISEG – Lisbon School of Economics \& Management}
-\begin{itemize}
-    \item Specialized in Business Analytics, Cloud Applications, Digital Transformation, Security \& AI.
-\end{itemize}
+    % Job 4
+    \textbf{\textcolor{textdark}{IT Helpdesk Technician}} \hfill \textcolor{accent}{2012 -- 2013} \\
+    \textit{\textcolor{accent}{EDNI Lda}} \hfill \textcolor{textlight}{Lisbon, Portugal}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt, topsep=4pt]
+        \item \textcolor{textdark}{\small Delivered first-line support, logging and tracking technical incidents.}
+    \end{itemize}
+    \vspace{6pt}
 
-% --- Certifications ---
-\section{Certifications}
-\begin{itemize}
-    \item \textbf{Certified ScrumMaster® (CSM)} -- Scrum Alliance (2025)
-    \item \textbf{Advanced Microsoft Power BI} -- LinkedIn Learning (2022)
-\end{itemize}
+    % Job 5
+    \textbf{\textcolor{textdark}{Hardware Technician}} \hfill \textcolor{accent}{2011 -- 2012} \\
+    \textit{\textcolor{accent}{DECSIS}} \hfill \textcolor{textlight}{Alfragide, Portugal}
+    \begin{itemize}[leftmargin=*, label=\textcolor{accent}{•}, itemsep=2pt, topsep=4pt]
+        \item \textcolor{textdark}{\small Diagnosed and replaced faulty components, ensuring operational efficiency.}
+    \end{itemize}
 
-% --- Languages ---
-\section{Languages}
-\begin{itemize}
-    \item \textbf{English:} Fluent (Professional Proficiency)
-    \item \textbf{Portuguese:} Native
-\end{itemize}
+\end{minipage}
 
 \end{document}
